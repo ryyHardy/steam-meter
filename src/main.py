@@ -1,12 +1,21 @@
 import os
+import string
 
 import nltk
+from nltk.corpus import stopwords
 from nltk.downloader import Downloader
+from nltk.tokenize import word_tokenize
 
 from config import DATA_DIR
 
 NLTK_DATA_DIR = DATA_DIR / "nltk"
-REQUIRED_NLTK_PACKAGES = ["movie_reviews", "vader_lexicon", "punkt", "stopwords"]
+REQUIRED_NLTK_PACKAGES = [
+    "movie_reviews",
+    "vader_lexicon",
+    "punkt",
+    "punkt_tab",
+    "stopwords",
+]
 
 
 def ensure_nltk_data(
@@ -30,8 +39,33 @@ def ensure_nltk_data(
             nltk.download(pkg, download_dir=data_dir, quiet=False)
 
 
+def preprocess_text(text: str):
+    # Tokenize text
+    tokens = word_tokenize(text)
+
+    # Convert to lowercase
+    tokens = [token.lower() for token in tokens]
+
+    # Remove punctuation
+    tokens = [token for token in tokens if token not in string.punctuation]
+
+    # Remove stop words
+    stop_words = set(stopwords.words("english"))
+    tokens = [token for token in tokens if token not in stop_words]
+
+    return tokens
+
+
 def main():
-    print("Hello from SteamMeter!")
+    review_text = "This game is absolutely incredible! The graphics are stunning and the gameplay is super engaging. I highly recommend it to everyone!"
+    original_tokens = word_tokenize(review_text)
+    processed_tokens = preprocess_text(review_text)
+
+    print("Original text:", review_text)
+
+    print("Original tokens:", original_tokens)
+
+    print("Processed tokens:", processed_tokens)
 
 
 if __name__ == "__main__":
