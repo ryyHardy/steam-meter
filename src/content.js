@@ -11,7 +11,11 @@ function detectGamePage() {
     const match = url.match(/\/app\/(\d+)/);
     if (match) {
       const gameID = match[1];
-      console.log("Game ID:", gameID);
+      console.log("Sending game ID to background:", gameID);
+
+      chrome.runtime.sendMessage({ action: "analyzeReviews", gameID: gameID }, (response) => {
+        console.log("Background responded:", response);
+      });
     }
   }
 }
