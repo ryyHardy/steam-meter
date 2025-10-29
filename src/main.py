@@ -1,20 +1,13 @@
-from nlp.sentiment import get_negative_review, get_positive_review, get_sentiment
+from nlp.sentiment import random_review_sample, sentiment_report
 
 
 def main():
-    pos = get_positive_review()
-    neg = get_negative_review()
+    sample = random_review_sample(50)
+    report = sentiment_report(sample)
 
-    pos_sentiment = get_sentiment(pos)
-    neg_sentiment = get_sentiment(neg)
-
-    print("\nPOSITIVE REVIEW SENTIMENT:")
-    print("Scores:", pos_sentiment)
-    print(f"Classification: '{pos_sentiment.classify()}'")
-
-    print("\nNEGATIVE REVIEW SENTIMENT:")
-    print("Scores:", neg_sentiment)
-    print(f"Classification: '{neg_sentiment.classify()}'")
+    print("---REPORT---")
+    for k, v in report.items():
+        print(f"{k}: {v}")
 
 
 if __name__ == "__main__":
