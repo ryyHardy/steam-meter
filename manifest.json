@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Steam Meter",
+  "version": "1.0",
+  "description": "Analyzes sentiment of Steam game reviews",
+
+  "permissions": ["activeTab"],
+
+  "content_scripts": [
+    {
+      "matches": ["https://store.steampowered.com/app/"],
+      "js": ["src/content.js"]
+    }
+  ],
+
+  "background": {
+    "service_worker": "src/background.js"
+  },
+
+  "action": {
+    "default_title": "Steam Meter"
+  }
+}
