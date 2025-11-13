@@ -85,20 +85,40 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   return true;
 });
 
-// Display results in popup
 function displayResults(data) {
   document.getElementById("status").textContent = "✓ Analysis Complete!";
   document.getElementById("status").className = "status complete";
   document.getElementById("analyzeBtn").disabled = false;
 
-  // Update stats
+  // Update basic stats (from Steam API)
   document.getElementById("totalReviews").textContent =
-    data.summary.total_reviews || "-";
+    data.summary?.total_reviews || "-";
   document.getElementById("fetchedReviews").textContent = data.reviews.length;
   document.getElementById("positiveCount").textContent =
-    data.summary.total_positive || "-";
+    data.summary?.total_positive || "-";
   document.getElementById("negativeCount").textContent =
-    data.summary.total_negative || "-";
+    data.summary?.total_negative || "-";
+
+  // Display sentiment analysis results from backend
+  if (data.sentimentReport) {
+    const report = data.sentimentReport;
+
+    // Update sentiment stats
+    const sentimentEl = document.getElementById("sentimentOverall");
+    const avgScoreEl = document.getElementById("avgScore");
+    const positivePercentEl = document.getElementById("positivePercent");
+    const negativePercentEl = document.getElementById("negativePercent");
+    const neutralPercentEl = document.getElementById("neutralPercent");
+
+    if (sentimentEl) sentimentEl.textContent = report.overall_sentiment;
+    if (avgScoreEl) avgScoreEl.textContent = report.avg_score.toFixed(3);
+    if (positivePercentEl)
+      positivePercentEl.textContent = `${report.positive_percent}%`;
+    if (negativePercentEl)
+      negativePercentEl.textContent = `${report.negative_percent}%`;
+    if (neutralPercentEl)
+      neutralPercentEl.textContent = `${report.neutral_percent}%`;
+  }
 
   // Show results
   document.getElementById("results").className = "results visible";

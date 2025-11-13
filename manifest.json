@@ -3,9 +3,10 @@
   "name": "Steam Meter",
   "version": "1.0",
   "description": "Analyzes sentiment of Steam game reviews",
-  "permissions": [
-    "activeTab",
-    "tabs"
+  "permissions": ["activeTab", "tabs"],
+  "host_permissions": [
+    "https://steam-meter-backend.onrender.com/*",
+    "https://store.steampowered.com/*"
   ],
   "icons": {
     "16": "./assets/icons/16x16.png",
@@ -15,12 +16,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://store.steampowered.com/app/*"
-      ],
-      "js": [
-        "src/content.js"
-      ]
+      "matches": ["https://store.steampowered.com/app/*"],
+      "js": ["src/content.js"]
     }
   ],
   "background": {
