@@ -36,6 +36,6 @@ class ReviewResponse(BaseModel):
     written_during_early_access: (
         bool  # Whether the user posted this review during the game's Early Access
     )
-    developer_response: str  # Text content of developer response to review, if any
-    timestamp_dev_responded: datetime  # When the developer responded, if applicable
+    developer_response: str | None = None  # Text content of developer response to review, if any
+    timestamp_dev_responded: datetime | None = None  # When the developer responded, if applicable
     primarily_steam_deck: bool  # Did the reviewer play this mainly on the Steam Deck at the time of writing
