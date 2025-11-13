@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Steam Meter</title>
+    <link
+      rel="stylesheet"
+      href="css/popup.css"
+    />
+  </head>
+
+  <body>
+    <h1>Steam Meter</h1>
+    <div
+      class="game-info"
+      id="gameInfo"
+      style="display: none"
+    >
+      <div
+        class="game-name"
+        id="gameName"
+      >
+        Loading...
+      </div>
+      <div class="game-id">App ID: <span id="gameId">-</span></div>
+    </div>
+
+    <div
+      class="status waiting"
+      id="status"
+    >
+      Navigate to a Steam game page to begin
+    </div>
+
+    <button
+      id="analyzeBtn"
+      disabled
+    >
+      Analyze Reviews
+    </button>
+
+    <div
+      class="results"
+      id="results"
+    >
+      <div class="stat">
+        <span class="stat-label">Total Reviews:</span>
+        <span
+          class="stat-value"
+          id="totalReviews"
+          >-</span
+        >
+      </div>
+      <div class="stat">
+        <span class="stat-label">Reviews Fetched:</span>
+        <span
+          class="stat-value"
+          id="fetchedReviews"
+          >-</span
+        >
+      </div>
+      <div class="stat">
+        <span class="stat-label">Positive:</span>
+        <span
+          class="stat-value"
+          id="positiveCount"
+          >-</span
+        >
+      </div>
+      <div class="stat">
+        <span class="stat-label">Negative:</span>
+        <span
+          class="stat-value"
+          id="negativeCount"
+          >-</span
+        >
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

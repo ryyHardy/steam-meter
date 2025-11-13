@@ -4,7 +4,8 @@
   "version": "1.0",
   "description": "Analyzes sentiment of Steam game reviews",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
   "icons": {
     "16": "./assets/icons/16x16.png",
@@ -26,6 +27,7 @@
     "service_worker": "src/background.js"
   },
   "action": {
-    "default_title": "Steam Meter"
+    "default_title": "Steam Meter",
+    "default_popup": "src/popup.html"
   }
 }
